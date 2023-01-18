@@ -20,9 +20,9 @@ function SideBar() {
   ];
 
   const activeLink =
-    "flex items-center p-3  text-gray-900 text-md my-3";
+    "flex items-center p-3 text-gray-900 text-md my-3";
   const normalLink =
-    "flex items-center p-3 text-md text-gray-700  dark:text-gray-200 dark:hover:bg-main-dark-bg hover:bg-light-gray my-3";
+    "flex items-center p-3 bg-gray-800 bg- text-md text-gray-700  dark:text-gray-200 dark:hover:bg-main-dark-bg hover:bg-light-gray my-3";
 
   return (
     <div className={`h-screen select-none duration-100 border-r border-gray-500 fixed w-[300px] bg-gray-900 z-50 shadow-xl p-4 ${sidebar ? "left-0" : "left-[-100%]"}`}>
@@ -34,8 +34,8 @@ function SideBar() {
         <AiOutlineClose color='#ccc' size={26} onClick={() => setSidebar(false)} />
       </div>
       <div>
-        <h3 className='text-lg text-[#ccc] mb-2'>AI Моделууд</h3>
-        <select className='bg-gray-800 w-full text-[#ccc] outline-none' value={model} onChange={(e) => setModel(e.target.value)}>
+        <h3 className='text-lg text-[#ccc] mb-2 '>AI Моделууд</h3>
+        <select className='bg-gray-800 w-full text-[#ccc] outline-none h-[50px] px-2' value={model} onChange={(e) => setModel(e.target.value)}>
           {/* {
             isLoading ? (
               <p>Хайж байна...</p>
@@ -58,6 +58,8 @@ function SideBar() {
             style={({ isActive }) => ({
               backgroundColor: isActive ? "#ccc" : "",
             })}
+            onClick={() => setSidebar(false)}
+
             className={({ isActive }) =>
               isActive ? activeLink : normalLink
             }
@@ -69,6 +71,7 @@ function SideBar() {
             style={({ isActive }) => ({
               backgroundColor: isActive ? "#ccc" : "",
             })}
+            onClick={() => setSidebar(false)}
             className={({ isActive }) =>
               isActive ? activeLink : normalLink
             }

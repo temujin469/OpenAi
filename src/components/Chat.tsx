@@ -29,6 +29,7 @@ function Chat() {
     setChats(newChats)
     setInput('')
     setLoading(true);
+    chatRef.current?.scrollIntoView()
     setError(false)
     try {
       const prompt = newChats.map(chat => chat.data).join("\n")
@@ -62,14 +63,13 @@ function Chat() {
       // setChats(prev => [...prev, { data: "Уучлаарай алдаа гарлаа", isAi: true, error: true }])
     }
 
-    chatRef.current?.scrollIntoView()
   }
 
 
   return (
     <div className='overflow-hidden'>
       <Header title='Бот' />
-      <div className="flex flex-col h-[calc(100vh-50px)] bg-gray-700">
+      <div className="flex flex-col h-screen pt-[50px] bg-gray-700">
         <div className="flex-1 overflow-x-hidden overflow-y-scroll" >
           {
 
@@ -100,7 +100,7 @@ function Chat() {
           }
         </div>
 
-        <form onSubmit={handleSubmit} className="bg-gray-900 p-3 flex gap-3">
+        <form onSubmit={handleSubmit} className="bg-gray-900 p-3 flex gap-3 absolute bottom-0 w-full">
           <textarea
             className="border text-gray-200 outline-none bg-gray-700 p-2 w-full"
             placeholder="Та юу бодож байна..."
