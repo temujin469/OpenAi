@@ -14,25 +14,24 @@ type Chat = {
 
 function ImageGenerate() {
   const [chats, setChats] = useState<Chat[]>([])
-  const [prompt, setprompt] = useState<string>('');
+  const [input, setInput] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false)
 
   const [error, setError] = useState<boolean>(false)
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
-    const newChats = [...chats, { data: prompt, isAi: false }];
-    setChats(newChats)
-    setprompt('')
+    const prompt = input;
+    setChats([...chats, { data: input, isAi: false }])
+    setInput('')
     setLoading(true);
     setError(false)
     try {
-      const prompt = newChats.map(chat => chat.data).join("\n")
       const { data: response } = await baseUrl.post('/genImage', { prompt: `${prompt}` });
       const aiGeneratedImages = response.data.data;
 
 
-      setChats([...newChats, { data: aiGeneratedImages, isAi: true }])
+      setChats([...chats, { data: aiGeneratedImages, isAi: true }])
       setLoading(false)
 
     }
@@ -92,10 +91,10 @@ function ImageGenerate() {
           <textarea
             className="border text-gray-200 outline-none bg-gray-700 p-2 w-full"
             placeholder="Та ямар зураг төсөөлж байна..."
-            value={prompt}
-            onChange={e => setprompt(e.target.value)}
+            value={input}
+            onChange={e => setInput(e.target.value)}
           />
-          <button disabled={!prompt} type="submit" className="bg-green-600 disabled:bg-gray-800 disabled:text-gray-600 text-white p-2" >Зуруулах</button>
+          <button disabled={!input} type="submit" className="bg-green-600 disabled:bg-gray-800 disabled:text-gray-600 text-white p-2" >Зуруулах</button>
         </form>
       </div>
     </div>
