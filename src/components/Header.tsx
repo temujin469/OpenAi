@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { FaRobot } from "react-icons/fa"
 import { BiMenu } from "react-icons/bi"
 import { useAppContext } from '../contexts/appContext';
 import { useLocation } from 'react-router-dom';
+import { notification } from 'antd';
 
 type Props = {
   title: string
@@ -11,7 +12,21 @@ type Props = {
 function Header({ title }: Props) {
   const { sidebar, setSidebar, model, setModel } = useAppContext();
 
-  const location = useLocation()
+  const location = useLocation();
+
+  const handleChange = (e: any) => {
+
+    setModel(e.target.value)
+    notification.open({
+      message: e.target.value,
+      icon: <FaRobot />,
+      className: "bg-gray-600 text-white",
+      duration: 3,
+      description:
+        `${e.target.value === "text-davinci-003" ? '"text-davinci-003" модел нь код бичих болон орчуулга хийх чадвартай' : `Та яаг одоо "${e.target.value}" моделийг ашиглаж байна`
+        }`,
+    });
+  }
 
   const models = [
     { value: "text-davinci-001", title: "Модел 1" },
@@ -26,7 +41,7 @@ function Header({ title }: Props) {
           <BiMenu color='#ccc' size={26} onClick={() => setSidebar(!sidebar)} className={sidebar ? "hidden" : "block"} />
         </li>
         <li>
-          <select value={model} onChange={(e) => setModel(e.target.value)} className={`bg-gray-800 outline-none p-2 rounded-md text-white ${location.pathname === "/" ? "block" : "hidden"}`}>
+          <select value={model} onChange={handleChange} className={`bg-gray-800 outline-none p-2 rounded-md text-white ${location.pathname === "/" ? "block" : "hidden"}`}>
             {
               models.map((model: any) => (
                 <option value={model.value} key={model.value}>{model.title}</option>

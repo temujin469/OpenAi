@@ -11,7 +11,7 @@ type initCtx = {
 export const AppContext = createContext<any>({});
 
 export const AppContextProvider = ({ children }: any) => {
-  const [model, setModel] = useState<string>('text-davinci-003')
+  const [model, setModel] = useState<string>('text-davinci-001')
   const [sidebar, setSidebar] = useState<boolean>(false)
   return (
     <AppContext.Provider value={{ model, setModel, sidebar, setSidebar }}>
