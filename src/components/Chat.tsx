@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import TypeText from './TypeText';
 import Loader from './Loader';
 import Header from './Header';
@@ -6,6 +6,7 @@ import { BsFillPersonFill } from 'react-icons/bs'
 import { FaRobot } from "react-icons/fa"
 import baseUrl from '../utils/axios';
 import { useAppContext } from '../contexts/appContext';
+import useAutosizeTextArea from '../hooks/autoSizeTextArea';
 
 
 // import
@@ -22,6 +23,13 @@ function Chat() {
   const [error, setError] = useState<boolean>(false)
   const chatRef = useRef<HTMLDivElement>(null)
   const { model } = useAppContext()
+  const textAreaRef = useRef<HTMLTextAreaElement>(null);
+
+  useAutosizeTextArea(textAreaRef.current, input);
+
+  useEffect(() => {
+    chatRef.current?.scrollIntoView({ behavior: "smooth" })
+  }, [chats])
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
@@ -29,7 +37,6 @@ function Chat() {
     setChats(newChats)
     setInput('')
     setLoading(true);
-    chatRef.current?.scrollIntoView()
     setError(false)
     try {
       const prompt = newChats.map(chat => chat.data).join("\n")
@@ -69,7 +76,7 @@ function Chat() {
   return (
     <div className='overflow-hidden'>
       <Header title='Бот' />
-      <div className="flex flex-col h-screen pt-[50px] bg-gray-700">
+      <div className="flex flex-col h-[calc(100vh-50px)] bg-gray-700">
         <div className="flex-1 overflow-x-hidden overflow-y-scroll" >
           {
 
@@ -100,14 +107,16 @@ function Chat() {
           }
         </div>
 
-        <form onSubmit={handleSubmit} className="bg-gray-900 p-3 flex gap-3 absolute bottom-0 w-full">
+        <form onSubmit={handleSubmit} className="bg-gray-900 p-3 flex w-full">
           <textarea
-            className="border text-gray-200 outline-none bg-gray-700 p-2 w-full"
+            ref={textAreaRef}
+            className="rounded-l-md text-gray-200 outline-none bg-gray-700 p-2 w-full"
             placeholder="Та юу бодож байна..."
             value={input}
+            rows={1}
             onChange={e => setInput(e.target.value)}
           />
-          <button disabled={!input} type="submit" className="bg-green-600 disabled:bg-gray-800 disabled:text-gray-600 text-white p-2" >Илгээх</button>
+          <button disabled={!input} type="submit" className="bg-green-600 h-fit rounded-r-md disabled:bg-gray-800 disabled:text-gray-600 text-white p-2" >Илгээх</button>
         </form>
       </div>
     </div>

@@ -2,24 +2,45 @@ import React from 'react'
 import { FaRobot } from "react-icons/fa"
 import { BiMenu } from "react-icons/bi"
 import { useAppContext } from '../contexts/appContext';
+import { useLocation } from 'react-router-dom';
 
 type Props = {
   title: string
 }
 
 function Header({ title }: Props) {
-  const { sidebar, setSidebar } = useAppContext();
+  const { sidebar, setSidebar, model, setModel } = useAppContext();
+
+  const location = useLocation()
+
+  const models = [
+    { value: "text-davinci-001", title: "Модел 1" },
+    { value: "text-davinci-002", title: "Модел 2" },
+    { value: "text-davinci-003", title: "Модел 3" }
+  ];
+
   return (
-    <div className='h-[50px] fixed top-0 left-0 w-full select-none px-2 bg-gray-900 shadow-xl'>
+    <div className='h-[50px] select-none px-2 bg-gray-900 shadow-xl'>
       <ul className='flex justify-between items-center h-[50px]'>
-        <li>
+        <li className='md:hidden'>
           <BiMenu color='#ccc' size={26} onClick={() => setSidebar(!sidebar)} className={sidebar ? "hidden" : "block"} />
         </li>
-        <li className='flex gap-2 items-end text-sm'>
+        <li>
+          <select value={model} onChange={(e) => setModel(e.target.value)} className={`bg-gray-800 outline-none p-2 rounded-md text-white ${location.pathname === "/" ? "block" : "hidden"}`}>
+            {
+              models.map((model: any) => (
+                <option value={model.value} key={model.value}>{model.title}</option>
+              ))
+            }
+          </select>
+
+        </li>
+        <li className={`flex gap-2 items-end text-sm`}>
           <p className='text-[#ccc] text-lg'>{title}</p>
           <FaRobot size={30} color="#ccc" />
         </li>
       </ul>
+
     </div>
   )
 }

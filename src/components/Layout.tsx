@@ -8,7 +8,7 @@ const Layout = () => {
   return (
     <div className='bg-gray-900'>
       <SideBar />
-      <div className={`duration-100 ${sidebar && "md:ml-[300px]"}`}>
+      <div className={`md:ml-[350px] duration-100`}>
         <Outlet />
       </div>
     </div>
