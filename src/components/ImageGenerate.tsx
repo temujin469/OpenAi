@@ -1,4 +1,4 @@
-import { Image, Spin } from 'antd';
+import { Affix, Image, Spin } from 'antd';
 import React, { useEffect, useRef, useState } from 'react'
 import { BsFillPersonFill } from 'react-icons/bs';
 import { FaRobot } from 'react-icons/fa';
@@ -58,7 +58,10 @@ function ImageGenerate() {
   return (
     <div className='overflow-hidden h-screen'>
       <div className="flex flex-col bg-secondBg dark:bg-secondDarkBg h-full">
-        <Header title='Бот' />
+        <Affix offsetTop={0}>
+          <Header title='Бот' />
+        </Affix>
+
         <div className="pt-[50px] overflow-x-hidden overflow-y-scroll flex-[1]" >
           {
             chats.length ? (
