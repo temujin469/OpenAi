@@ -1,0 +1,16 @@
+{
+  "short_name": "Chatly",
+  "name": "Chatly",
+  "icons": [
+    {
+      "src": "/maskableIcon.png",
+      "type": "image/png",
+      "sizes": "1462x1462"
+    }
+  ],
+  "scope": "/",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}

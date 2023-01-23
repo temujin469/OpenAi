@@ -38,7 +38,8 @@ app.post(
     const response = await openai.createImage({
       prompt: prompt,
       n: 5,
-      size: "1024x512",
+      // size: "1024x512",
+      size: "1024x1024",
     });
     res.status(200).json({
       data: response.data,

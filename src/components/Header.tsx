@@ -4,6 +4,8 @@ import { BiMenu } from "react-icons/bi"
 import { useAppContext } from '../contexts/appContext';
 import { useLocation } from 'react-router-dom';
 import { notification } from 'antd';
+import { useQuery } from 'react-query';
+import baseUrl from '../utils/axios';
 
 type Props = {
   title: string
@@ -28,31 +30,34 @@ function Header({ title }: Props) {
     });
   }
 
-  const models = [
-    { value: "text-davinci-001", title: "Модел 1" },
-    { value: "text-davinci-002", title: "Модел 2" },
-    { value: "text-davinci-003", title: "Модел 3" }
-  ];
+
+  const { data: models, isLoading, error } = useQuery(['models'], async () => {
+    const { data: response } = await baseUrl.get('/models');
+    return response.models.data;
+  })
+
+  // const availaleModels: string[] = ["davinci", "text-davinci-001", "text-davinci-002", "text-davinci-003"]
+
 
   return (
-    <div className='h-[50px] select-none px-2 bg-gray-900 shadow-xl'>
+    <div className='h-[50px] select-none px-2 bg-mainBg dark:bg-mainDarkBg shadow-xl'>
       <ul className='flex justify-between items-center h-[50px]'>
-        <li className='md:hidden'>
-          <BiMenu color='#ccc' size={26} onClick={() => setSidebar(!sidebar)} className={sidebar ? "hidden" : "block"} />
+        <li className='md:hidden text-white dark:text-mainDarkText'>
+          <BiMenu size={26} onClick={() => setSidebar(!sidebar)} className={sidebar ? "hidden" : "block"} />
         </li>
         <li>
-          <select value={model} onChange={handleChange} className={`bg-gray-800 outline-none p-2 rounded-md text-white ${location.pathname === "/" ? "block" : "hidden"}`}>
+          <select value={model} onChange={handleChange} className={`dark:bg-secondDarkBg bg-secondBg w-[200px] outline-none p-2 rounded-full dark:text-mainDarkText text-white ${location.pathname === "/" ? "block" : "hidden"}`}>
             {
-              models.map((model: any) => (
-                <option value={model.value} key={model.value}>{model.title}</option>
+              models?.map((model: any) => (
+                <option value={model.id} key={model.id} > {model.id}</option>
               ))
             }
           </select>
 
         </li>
         <li className={`flex gap-2 items-end text-sm`}>
-          <p className='text-[#ccc] text-lg'>{title}</p>
-          <FaRobot size={30} color="#ccc" />
+          {/* <p className=' text-lg font-bold'>{title}</p> */}
+          <FaRobot size={30} className="text-primary" />
         </li>
       </ul>
 

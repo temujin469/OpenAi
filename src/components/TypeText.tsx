@@ -22,7 +22,7 @@ function TypeText({ text, isAi, error }: Props) {
 
 
   return (
-    <p className={`selection:text-white break-words selection:bg-green-600 ${error ? 'text-red-600' : "text-green-600"}`}>{isAi ? typedText : text}</p>
+    <p className={`selection:text-white break-words selection:bg-primary ${error ? 'text-red-400' : "dark:text-primary text-mainText"}`}>{isAi ? typedText : text}</p>
   )
 }
 

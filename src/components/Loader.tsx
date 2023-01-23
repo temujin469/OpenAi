@@ -21,7 +21,7 @@ function Loader({ loading }: Props) {
 
 
   return (
-    <p className='text-green-600'>{dots}</p>
+    <p className='text-mainText dark:text-primary'>{dots}</p>
   )
 }
 

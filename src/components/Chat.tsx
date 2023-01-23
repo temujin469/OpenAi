@@ -7,6 +7,7 @@ import { FaRobot } from "react-icons/fa"
 import baseUrl from '../utils/axios';
 import { useAppContext } from '../contexts/appContext';
 import useAutosizeTextArea from '../hooks/autoSizeTextArea';
+import { BiSend } from 'react-icons/bi';
 
 
 // import
@@ -60,7 +61,7 @@ function Chat() {
       // })
 
       // setChats(prev => [...prev, { data: translateResponse[0].translations[0].text, isAi: true }])
-      setChats([...newChats, { data: aiResponse, isAi: true }])
+      setChats([...newChats, { data: `${aiResponse}`, isAi: true }])
       setLoading(false)
 
     }
@@ -72,51 +73,61 @@ function Chat() {
 
   }
 
-
+  // h - [calc(100vh - 50px)]
   return (
-    <div className='overflow-hidden'>
-      <Header title='Бот' />
-      <div className="flex flex-col h-[calc(100vh-50px)] bg-gray-700">
-        <div className="flex-1 overflow-x-hidden overflow-y-scroll" >
+    <div className='overflow-hidden h-screen'>
+      <div className="flex flex-col bg-white dark:bg-secondDarkBg h-full">
+
+        <Header title='Бот' />
+        <div className="overflow-x-hidden overflow-y-scroll flex-[1]" >
           {
 
             chats.length ? chats.map((chat, index) => (
-              <div className={`flex gap-3 min-h-[60px] p-4 ${chat.isAi ? " bg-gray-700" : "bg-gray-800"} `} key={index}>
+              <div className={`flex gap-3 min-h-[60px] p-4 ${chat.isAi && " bg-thirdBg dark:bg-thirdDarkBg"} `} key={index}>
                 <div>
-                  {chat.isAi ? <FaRobot color='#ccc' size={20} /> : <BsFillPersonFill color='#ccc' size={20} />}
+                  {chat.isAi ? <FaRobot size={20} className="text-primary" /> : <BsFillPersonFill size={20} className="text-primary" />}
                 </div>
                 <div key={index} ref={chatRef} >
                   <TypeText text={chat.data} isAi={chat.isAi} error={chat.error} />
                 </div>
               </div>
             )) : (
-              <div className="flex gap-3 min-h-[60px] p-4 bg-gray-700 justify-center">
-                <FaRobot className='text-gray-600' size={270} />
+              <div className="flex flex-col items-center gap-3 min-h-[60px] p-4 justify-center">
+                <FaRobot className='dark:text-gray-900/20 text-gray-900/10' size={270} />
+                <p className='dark:text-gray-900/20 text-gray-900/10  font-bold'>ChatGPT Монгол хувилбар</p>
               </div>
             )
 
           }
           {
             loading ? (
-              <div className="flex gap-3 min-h-[60px] bg-gray-700 p-4">
-                <FaRobot color='#ccc' size={20} />
+              <div className="flex gap-3 min-h-[60px] bg-thirdBg dark:bg-thirdDarkBg p-4">
+                <FaRobot className='text-primary' size={20} />
                 <Loader loading={loading} />
-              </div>) : error && (<div className="flex gap-3 min-h-[60px] bg-gray-700 p-4">
-                <p className='text-red-600'>Уучлаарай алдаа гарлаа</p>
+              </div>) : error && (<div className="flex gap-3 min-h-[60px] bg-thirdBg dark:bg-thirdDarkBg p-4">
+                <p className='text-red-400'>Уучлаарай алдаа гарлаа</p>
               </div>)
           }
         </div>
 
-        <form onSubmit={handleSubmit} className="bg-gray-900 p-3 flex w-full">
+        <form onSubmit={handleSubmit} className="bg-mainBg relative dark:bg-mainDarkBg p-3 flex w-full" style={
+          { boxShadow: "0px 0px 10px 5px #00000013" }
+        }>
+
           <textarea
-            ref={textAreaRef}
-            className="rounded-l-md text-gray-200 outline-none bg-gray-700 p-2 w-full"
+            className="rounded-l-[20px] resize-none outline-none text-mainText dark:text-mainDarkText bg-white dark:bg-secondDarkBg pl-3 py-2 w-full"
             placeholder="Та юу бодож байна..."
-            value={input}
+            ref={textAreaRef}
             rows={1}
+            value={input}
             onChange={e => setInput(e.target.value)}
           />
-          <button disabled={!input} type="submit" className="bg-green-600 h-fit rounded-r-md disabled:bg-gray-800 disabled:text-gray-600 text-white p-2" >Илгээх</button>
+          <button
+            disabled={!input}
+            type="submit"
+            className="flex items-end pr-3 rounded-r-[20px] disabled:text-gray-800/40 dark:disabled:text-mainDarkBg text-primary bg-white dark:bg-secondDarkBg p-2" >
+            <BiSend size={24} />
+          </button>
         </form>
       </div>
     </div>
