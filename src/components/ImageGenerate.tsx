@@ -59,7 +59,7 @@ function ImageGenerate() {
     <div className='overflow-hidden h-screen'>
       <div className="flex flex-col bg-secondBg dark:bg-secondDarkBg h-full">
         <Header title='Бот' />
-        <div className="overflow-x-hidden overflow-y-scroll flex-[1]" >
+        <div className="pt-[50px] overflow-x-hidden overflow-y-scroll flex-[1]" >
           {
             chats.length ? (
               chats.map((chat, index) => (

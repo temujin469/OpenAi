@@ -8,6 +8,7 @@ import baseUrl from '../utils/axios';
 import { useAppContext } from '../contexts/appContext';
 import useAutosizeTextArea from '../hooks/autoSizeTextArea';
 import { BiSend } from 'react-icons/bi';
+import { Affix } from 'antd';
 
 
 // import
@@ -77,11 +78,9 @@ function Chat() {
   return (
     <div className='overflow-hidden h-screen'>
       <div className="flex flex-col bg-white dark:bg-secondDarkBg h-full">
-
         <Header title='Бот' />
-        <div className="overflow-x-hidden overflow-y-scroll flex-[1]" >
+        <div className="pt-[50px] overflow-x-hidden overflow-y-scroll flex-[1]" >
           {
-
             chats.length ? chats.map((chat, index) => (
               <div className={`flex gap-3 min-h-[60px] p-4 ${chat.isAi && " bg-thirdBg dark:bg-thirdDarkBg"} `} key={index}>
                 <div>

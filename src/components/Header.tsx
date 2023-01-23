@@ -40,7 +40,7 @@ function Header({ title }: Props) {
 
 
   return (
-    <div className='h-[50px] select-none px-2 bg-mainBg dark:bg-mainDarkBg shadow-xl'>
+    <div className='fixed top-0 left-0 w-full h-[50px] select-none px-2 bg-mainBg dark:bg-mainDarkBg shadow-xl'>
       <ul className='flex justify-between items-center h-[50px]'>
         <li className='md:hidden text-white dark:text-mainDarkText'>
           <BiMenu size={26} onClick={() => setSidebar(!sidebar)} className={sidebar ? "hidden" : "block"} />
