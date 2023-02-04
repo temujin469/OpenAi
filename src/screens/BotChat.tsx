@@ -1,26 +1,26 @@
 import React, { useState, useRef, useEffect } from 'react';
-import TypeText from './TypeText';
-import Loader from './Loader';
-import Header from './Header';
+import TypeText from '../components/TypeText';
+import Loader from '../components/Loader';
+import BotHeader from '../components/BotHeader';
 import { BsFillPersonFill } from 'react-icons/bs'
 import { FaRobot } from "react-icons/fa"
 import baseUrl from '../utils/axios';
-import { useAppContext } from '../contexts/appContext';
+import { useAppContext } from '../contexts/AppContext';
 import useAutosizeTextArea from '../hooks/autoSizeTextArea';
 import { BiSend } from 'react-icons/bi';
 import { Affix } from 'antd';
 
 
 // import
-type Chat = {
+type BotChat = {
   data: string,
   isAi: boolean
   error?: boolean
 }
 
-function Chat() {
+function BotChat() {
   const [input, setInput] = useState<string>('');
-  const [chats, setChats] = useState<Chat[]>([])
+  const [chats, setChats] = useState<BotChat[]>([])
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<boolean>(false)
   const chatRef = useRef<HTMLDivElement>(null)
@@ -79,7 +79,7 @@ function Chat() {
     <div className='overflow-hidden h-screen'>
       <div className="flex flex-col bg-white dark:bg-secondDarkBg h-full">
         <Affix offsetTop={0}>
-          <Header title='Бот' />
+          <BotHeader />
         </Affix>
         <div className="overflow-x-hidden overflow-y-scroll flex-[1]" >
           {
@@ -136,4 +136,4 @@ function Chat() {
   );
 }
 
-export default Chat;
+export default BotChat;

@@ -1,39 +1,60 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Chat from './components/Chat'
-import ImageGenerate from './components/ImageGenerate';
+
+import BotChat from './screens/BotChat'
+import ImageGenerate from './screens/ImageGenerate';
 import Layout from './components/Layout';
+import Login from './screens/Login';
+import Register from './screens/Register';
+import ProtectedRoute from './components/ProtectedRoute';
+import Home from './screens/Home';
+import Friends from './screens/Friends';
+import Chats from './screens/Chats';
 
 
 function App() {
 
-  const [isFullscreen, setIsFullscreen] = React.useState(false);
-
-  useEffect(() => {
-    function onFullscreenChange() {
-      setIsFullscreen(Boolean(document.fullscreenElement));
-    }
-
-    document.addEventListener('fullscreenchange', onFullscreenChange);
-
-    return () => document.removeEventListener('fullscreenchange', onFullscreenChange);
-  }, []);
   const router = createBrowserRouter([
     {
       path: "/",
       element: (
-        <Layout />
+        <ProtectedRoute>
+          <Layout />
+        </ProtectedRoute>
       ),
       children: [
         {
-          path: "/",
-          element: <Chat />
+          path: "/bot",
+          element: <BotChat />
         },
         {
           path: "/image-generate",
           element: <ImageGenerate />
-        }
+        },
+        {
+          path: "/",
+          element: <Home />,
+          children: [
+            {
+              path: "/",
+              element: <Chats />
+            },
+            {
+              path: "/friends",
+              element: <Friends />
+            },
+          ]
+        },
+
       ]
+    },
+    {
+      path: "/login",
+      element: <Login />
+    },
+    {
+      path: "/register",
+      element: <Register />
     },
   ]);
   return (

@@ -5,9 +5,9 @@ import { FaRobot } from 'react-icons/fa';
 import { BiSend } from "react-icons/bi"
 import useAutosizeTextArea from '../hooks/autoSizeTextArea';
 import baseUrl from '../utils/axios';
-import Header from './Header';
-import Loader from './Loader';
-import TypeText from './TypeText';
+import BotHeader from '../components/BotHeader';
+import Loader from '../components/Loader';
+import TypeText from '../components/TypeText';
 
 type Chat = {
   data: any
@@ -59,10 +59,9 @@ function ImageGenerate() {
     <div className='overflow-hidden h-screen'>
       <div className="flex flex-col bg-secondBg dark:bg-secondDarkBg h-full">
         <Affix offsetTop={0}>
-          <Header title='Бот' />
+          <BotHeader />
         </Affix>
-
-        <div className="pt-[50px] overflow-x-hidden overflow-y-scroll flex-[1]" >
+        <div className="overflow-x-hidden overflow-y-scroll flex-[1]" >
           {
             chats.length ? (
               chats.map((chat, index) => (

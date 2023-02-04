@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
-import { useAppContext } from '../contexts/appContext';
+import React from 'react'
+import { useAppContext } from '../contexts/AppContext';
 import { MdOutlineClose } from "react-icons/md"
-import { FaRobot } from "react-icons/fa"
 import { NavLink } from "react-router-dom";
 import { DarkModeToggle } from "react-dark-mode-toggle-2";
+import { Image } from 'antd';
 
 
 
@@ -16,11 +16,11 @@ function SideBar() {
 
   return (
     <div className={`flex flex-row z-50 select-none duration-100 w-full md:w-auto fixed   ${sidebar ? "left-0" : " md:left-0 left-[-100%]"}`}>
-      <div className='shadow-xl flex flex-col z-10  bg-mainBg dark:bg-mainDarkBg p-4 h-screen w-[260px] md:w-[350px]'>
-        <div className='flex justify-between mb-10'>
+      <div className='shadow-xl flex flex-col z-10  bg-mainBg dark:bg-mainDarkBg p-4 h-screen w-[280px] md:w-[350px]'>
+        <div className='flex justify-between mb-5'>
           <div className='flex gap-2 items-center text-sm'>
-            <FaRobot size={30} className="text-primary" />
-            <p className='font-bold text-primary md:text-xl'>Хиймэл оюун ухаан</p>
+            <Image preview={false} height={50} width={50} className="rounded-full object-cover" src='https://thumbs.dreamstime.com/b/male-avatar-icon-flat-style-male-user-icon-cartoon-man-avatar-hipster-vector-stock-91462914.jpg' />
+            <p className='font-bold text-primary md:text-xl'>Тэмүүжин</p>
           </div>
           <MdOutlineClose onClick={() => setSidebar(false)} className="md:hidden text-white dark:text-mainDarkText h-10 w-10 p-2 rounded-full shadow-lg" />
         </div>
@@ -28,6 +28,14 @@ function SideBar() {
           <div>
             <NavLink
               to={`/`}
+              className={({ isActive }) =>
+                isActive ? activeLink : normalLink
+              }
+            >
+              Зурвасууд
+            </NavLink>
+            <NavLink
+              to={`/bot`}
               className={({ isActive }) =>
                 isActive ? activeLink : normalLink
               }

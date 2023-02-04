@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useAppContext } from '../contexts/appContext'
+import { useAppContext } from '../contexts/AppContext'
 import SideBar from './SideBar'
 import { Outlet } from "react-router-dom"
 
@@ -16,7 +16,7 @@ const Layout = () => {
   return (
     <div className={isDark ? "dark" : ""}>
       <SideBar />
-      <div className={`md:ml-[350px] duration-100`}>
+      <div className={`md:ml-[350px] duration-100 relative`}>
         <Outlet />
       </div>
     </div>
