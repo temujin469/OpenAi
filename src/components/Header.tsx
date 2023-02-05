@@ -2,17 +2,14 @@ import React, { useEffect } from 'react'
 import { FaRobot } from "react-icons/fa"
 import { BiMenu } from "react-icons/bi"
 import { useAppContext } from '../contexts/AppContext';
-import { useLocation } from 'react-router-dom';
-import { Affix, notification } from 'antd';
 import { useQuery } from 'react-query';
-import baseUrl from '../utils/axios';
 
 type Props = {
   title: string
 }
 
 function Header() {
-  const { sidebar, setSidebar, model, setModel } = useAppContext();
+  const { sidebar, setSidebar, model, setModel } = useAppContext() as any;
 
 
   return (

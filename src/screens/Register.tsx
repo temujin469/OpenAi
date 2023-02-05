@@ -56,19 +56,19 @@ function Register() {
 
       const storageRef = ref(storage, username);
 
-      const uploadTask = uploadBytesResumable(storageRef, file);
+      // const uploadTask = uploadBytesResumable(storageRef, file);
 
-      uploadTask.on('state_changed',
-        (error) => {
-          toast.error("Зураг алдаа гарлаа")
-        },
-        () => {
+      // uploadTask.on('state_changed',
+      //   (error) => {
+      //     toast.error("Зураг алдаа гарлаа")
+      //   },
+      //   () => {
 
-          getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
-            await updateProfile(user, { displayName: username, photoURL: downloadURL })
-          });
-        }
-      );
+      //     getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
+      //       await updateProfile(user, { displayName: username, photoURL: downloadURL })
+      //     });
+      //   }
+      // );
 
       localStorage.setItem("user", JSON.stringify({ username: user.displayName, uid: user.uid, photoURL: user.photoURL, email: user.email, accessToken: user.accessToken }))
       setCurrentUser(
