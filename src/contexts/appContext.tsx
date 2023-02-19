@@ -10,7 +10,7 @@ type initCtx = {
 } | null
 
 
-export const AppContext = createContext<initCtx | any>(null);
+const AppContext = createContext<initCtx | any>(null);
 
 export const AppContextProvider = ({ children }: any) => {
   const [model, setModel] = useState<string>('text-davinci-001')
