@@ -1,16 +1,16 @@
 import { createContext, useContext, useState } from "react";
 
-type initCtx = {
-  model?: string
-  setModel?: React.Dispatch<React.SetStateAction<string>>
-  sidebar?: boolean,
-  setSidebar?: any
-  setMode: any
-  isDark?: boolean
-} | null
+// type initCtx = {
+//   model: string
+//   setModel: React.Dispatch<React.SetStateAction<string>>
+//   sidebar: boolean,
+//   setSidebar?: any
+//   setMode: any
+//   isDark?: boolean
+// } | null
 
 
-export const AppContext = createContext<initCtx>(null);
+export const AppContext = createContext<any>(null);
 
 export const AppContextProvider = ({ children }: any) => {
   const [model, setModel] = useState<string>('text-davinci-001')

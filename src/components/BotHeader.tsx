@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { FaRobot } from "react-icons/fa"
 import { BiMenu } from "react-icons/bi"
 import { useLocation } from 'react-router-dom';
@@ -7,9 +7,6 @@ import { useQuery } from 'react-query';
 import baseUrl from '../utils/axios';
 import { useAppContext } from '../contexts/AppContext';
 
-type Props = {
-  title: string
-}
 
 function BotHeader() {
   const { sidebar, setSidebar, model, setModel } = useAppContext() as any;
@@ -32,7 +29,7 @@ function BotHeader() {
 
 
   const { data: models, isLoading, error } = useQuery(['models'], async () => {
-    const { data: response } = await baseUrl.get('/models');
+    const { data: response } = await baseUrl.get('/bot/models');
     return response.models.data;
   })
 
@@ -46,7 +43,7 @@ function BotHeader() {
           <BiMenu size={26} onClick={() => setSidebar(!sidebar)} className={sidebar ? "hidden" : "block"} />
         </li>
         <li>
-          <select value={model} onChange={handleChange} className={`dark:bg-secondDarkBg bg-secondBg w-[200px] outline-none p-2 rounded-full dark:text-mainDarkText text-white ${location.pathname === "/" ? "block" : "hidden"}`}>
+          <select value={model} onChange={handleChange} className={`dark:bg-secondDarkBg bg-secondBg w-[200px] outline-none p-2 rounded-full dark:text-mainDarkText text-white ${location.pathname === "/bot" ? "block" : "hidden"}`}>
             {
               models?.map((model: any) => (
                 <option value={model.id} key={model.id} > {model.id}</option>

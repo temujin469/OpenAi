@@ -24,7 +24,7 @@ function BotChat() {
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<boolean>(false)
   const chatRef = useRef<HTMLDivElement>(null)
-  const { model } = useAppContext()
+  const { model } = useAppContext() as any
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
   useAutosizeTextArea(textAreaRef.current, input);
@@ -43,7 +43,7 @@ function BotChat() {
     try {
       const prompt = newChats.map(chat => chat.data).join("\n")
       console.log(prompt)
-      const { data: response } = await baseUrl.post('/', { prompt: `${prompt}`, model });
+      const { data: response } = await baseUrl.post('/bot', { prompt: `${prompt}`, model });
       const aiResponse = response.data.trim()
 
       // const { data: translateResponse } = await axios.post("https://microsoft-translator-text.p.rapidapi.com/translate", [{ text: aiResponse }], {

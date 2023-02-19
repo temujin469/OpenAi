@@ -10,6 +10,8 @@ import ProtectedRoute from './components/ProtectedRoute';
 import Home from './screens/Home';
 import Friends from './screens/Friends';
 import Chats from './screens/Chats';
+import HomeLayout from './screens/HomeLayout';
+import { CreatePost } from './screens';
 
 
 function App() {
@@ -18,9 +20,9 @@ function App() {
     {
       path: "/",
       element: (
-        <ProtectedRoute>
-          <Layout />
-        </ProtectedRoute>
+        // <ProtectedRoute>
+        <Layout />
+        // </ProtectedRoute>
       ),
       children: [
         {
@@ -33,10 +35,18 @@ function App() {
         },
         {
           path: "/",
-          element: <Home />,
+          element: <HomeLayout />,
           children: [
             {
               path: "/",
+              element: <Home />
+            },
+            {
+              path: "/create-post",
+              element: <CreatePost />
+            },
+            {
+              path: "/bot",
               element: <Chats />
             },
             {

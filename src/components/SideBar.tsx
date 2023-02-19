@@ -32,7 +32,7 @@ function SideBar() {
                 isActive ? activeLink : normalLink
               }
             >
-              Зурвасууд
+              Галерей
             </NavLink>
             <NavLink
               to={`/bot`}
