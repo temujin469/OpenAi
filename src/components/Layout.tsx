@@ -4,7 +4,7 @@ import SideBar from './SideBar'
 import { Outlet } from "react-router-dom"
 
 const Layout = () => {
-  const { setMode, isDark } = useAppContext()
+  const { setMode, isDark } = useAppContext() as any;
 
   useEffect(() => {
     const currentThemeMode = localStorage.getItem("themeMode");

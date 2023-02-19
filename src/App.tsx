@@ -6,7 +6,6 @@ import ImageGenerate from './screens/ImageGenerate';
 import Layout from './components/Layout';
 import Login from './screens/Login';
 import Register from './screens/Register';
-import ProtectedRoute from './components/ProtectedRoute';
 import Home from './screens/Home';
 import Friends from './screens/Friends';
 import Chats from './screens/Chats';

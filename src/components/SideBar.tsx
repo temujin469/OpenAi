@@ -8,7 +8,7 @@ import { Image } from 'antd';
 
 
 function SideBar() {
-  const { sidebar, setSidebar, isDark, setMode } = useAppContext();
+  const { sidebar, setSidebar, isDark, setMode } = useAppContext() as any;
 
 
   const activeLink = "flex animation-all bg-secondBg duration-300 shadow-xl items-center py-3 px-5 text-white text-md rounded-full my-4";
