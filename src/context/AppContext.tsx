@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useState } from "react";
 
 type initCtx = {
   model: string
@@ -10,9 +10,9 @@ type initCtx = {
 } | null
 
 
-const AppContext = createContext<initCtx | any>(null);
+export const AppContext = createContext<initCtx | any>(null);
 
-export const AppContextProvider = ({ children }: any) => {
+const AppContextProvider = ({ children }: any) => {
   const [model, setModel] = useState<string>('text-davinci-001')
   const [sidebar, setSidebar] = useState<boolean>(false)
   const [isDark, setIsDark] = useState<boolean>(false);
@@ -31,4 +31,5 @@ export const AppContextProvider = ({ children }: any) => {
   );
 };
 
-export const useAppContext = () => useContext(AppContext);
+export default AppContextProvider;
+// export const useAppContext = () => useContext(AppContext);

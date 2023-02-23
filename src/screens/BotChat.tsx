@@ -1,14 +1,14 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useContext } from 'react';
 import TypeText from '../components/TypeText';
 import Loader from '../components/Loader';
 import BotHeader from '../components/BotHeader';
 import { BsFillPersonFill } from 'react-icons/bs'
 import { FaRobot } from "react-icons/fa"
 import baseUrl from '../utils/axios';
-import { useAppContext } from '../contexts/AppContext';
 import useAutosizeTextArea from '../hooks/autoSizeTextArea';
 import { BiSend } from 'react-icons/bi';
 import { Affix } from 'antd';
+import { AppContext } from '../context/AppContext';
 
 
 // import
@@ -24,7 +24,7 @@ function BotChat() {
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<boolean>(false)
   const chatRef = useRef<HTMLDivElement>(null)
-  const { model } = useAppContext() as any
+  const { model } = useContext(AppContext);
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
   useAutosizeTextArea(textAreaRef.current, input);

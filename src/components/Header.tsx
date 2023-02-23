@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { FaRobot } from "react-icons/fa"
 import { BiMenu } from "react-icons/bi"
-import { useAppContext } from '../contexts/AppContext';
+import { AppContext } from '../context/AppContext'
 
 function Header() {
-  const { sidebar, setSidebar, model, setModel } = useAppContext() as any;
+  const { sidebar, setSidebar, model, setModel } = useContext(AppContext)
 
 
   return (

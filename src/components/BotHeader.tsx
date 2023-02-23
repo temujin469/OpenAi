@@ -1,15 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { FaRobot } from "react-icons/fa"
 import { BiMenu } from "react-icons/bi"
 import { useLocation } from 'react-router-dom';
 import { notification } from 'antd';
 import { useQuery } from 'react-query';
 import baseUrl from '../utils/axios';
-import { useAppContext } from '../contexts/AppContext';
+import { AppContext } from '../context/AppContext';
 
 
 function BotHeader() {
-  const { sidebar, setSidebar, model, setModel } = useAppContext() as any;
+  const { sidebar, setSidebar, model, setModel } = useContext(AppContext);
 
   const location = useLocation();
 

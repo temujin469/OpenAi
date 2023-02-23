@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react'
-import { useAppContext } from '../contexts/AppContext'
+import React, { useContext, useEffect } from 'react'
+import { AppContext } from '../context/AppContext'
 import SideBar from './SideBar'
 import { Outlet } from "react-router-dom"
 
 const Layout = () => {
-  const { setMode, isDark } = useAppContext() as any;
+  const { setMode, isDark } = useContext(AppContext);
 
   useEffect(() => {
     const currentThemeMode = localStorage.getItem("themeMode");

@@ -7,7 +7,7 @@ import { toast } from "react-hot-toast";
 import { Spin } from "antd";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth, storage } from "../utils/firebase"
-import { useAuthContext } from "../contexts/AuthContext";
+import { useAuthContext } from "../context/AuthContext";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
 

@@ -1,14 +1,14 @@
-import React from 'react'
-import { useAppContext } from '../contexts/AppContext';
+import React, { useContext } from 'react'
 import { MdOutlineClose } from "react-icons/md"
 import { NavLink } from "react-router-dom";
 import { DarkModeToggle } from "react-dark-mode-toggle-2";
 import { Image } from 'antd';
+import { AppContext } from '../context/AppContext';
 
 
 
 function SideBar() {
-  const { sidebar, setSidebar, isDark, setMode } = useAppContext() as any;
+  const { sidebar, setSidebar, isDark, setMode } = useContext(AppContext)
 
 
   const activeLink = "flex animation-all bg-secondBg duration-300 shadow-xl items-center py-3 px-5 text-white text-md rounded-full my-4";
