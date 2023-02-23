@@ -67,8 +67,8 @@ const CreatePost = (): any => {
   return (
     <section className="max-w-7xl mx-auto">
       <div>
-        <h1 className="font-bold text-[#222328] text-2xl md:text-[32px]">Зураг үүсгэх</h1>
-        <p className="mt-2 text-[#666e75] text-[14px] max-w-[500px]">
+        <h1 className="font-bold text-[#222328] dark:text-white text-2xl md:text-[32px]">Зураг үүсгэх</h1>
+        <p className="mt-2 text-[#666e75] dark:text-gray-200 text-[14px] max-w-[500px]">
           DALL-E AI-аар дамжуулан уран сэтгэмжтэй дүрсийг бүтээж, олон нийтэд хуваалцаарай
         </p>
       </div>

@@ -25,6 +25,20 @@ router.route("/").get(async (req, res) => {
   }
 });
 
+router.route("/view/:id").put(async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id);
+    res.status(200).json({ success: true, data: post.viewCount });
+    post.viewCount++;
+    post.save();
+  } catch (err) {
+    res.status(404).json({
+      success: false,
+      message: "Fetching posts failed, please try again",
+    });
+  }
+});
+
 router.route("/").post(async (req, res) => {
   try {
     const { name, prompt, photo } = req.body;
