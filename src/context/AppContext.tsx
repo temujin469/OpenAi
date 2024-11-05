@@ -13,7 +13,7 @@ type initCtx = {
 export const AppContext = createContext<initCtx | any>(null);
 
 const AppContextProvider = ({ children }: any) => {
-  const [model, setModel] = useState<string>('text-davinci-001')
+  const [model, setModel] = useState<string>('gpt-3.5-turbo')
   const [sidebar, setSidebar] = useState<boolean>(false)
   const [isDark, setIsDark] = useState<boolean>(false);
 

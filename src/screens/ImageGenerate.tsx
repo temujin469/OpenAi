@@ -41,10 +41,15 @@ function ImageGenerate() {
     setError(false)
     try {
       const { data: response } = await baseUrl.post('/genImage', { prompt: `${prompt}` });
-      const aiGeneratedImages = response.data.data;
+
+      console.log("resp: ",response);
+      const aiGeneratedImages = response.photo;
 
 
-      setChats([...chats, { data: aiGeneratedImages, isAi: true }])
+      setChats(data=>{
+        return [...data, { data: aiGeneratedImages, isAi: true }]
+      });
+      console.log(chats)
       setLoading(false)
 
     }
@@ -63,7 +68,7 @@ function ImageGenerate() {
         </Affix>
         <div className="overflow-x-hidden overflow-y-scroll flex-[1]" >
           {
-            chats.length ? (
+            chats.length > 0 ? (
               chats.map((chat, index) => (
                 <div ref={chatRef} className={`flex  gap-3 min-h-[60px] p-4 ${chat.isAi && "flex-col"} `} key={index}>
                   <div>
@@ -75,7 +80,7 @@ function ImageGenerate() {
                         <Image.PreviewGroup>
                           <div className='grid md:grid-cols-2 grid-cols-1 gap-3'>
                             {
-                              chat.data?.map((image: any) => (
+                              chat?.data?.map((image: any) => (
                                 <Image src={image.url} className="w-full h-full"
                                   placeholder={
                                     <div className='w-full h-full grid place-items-center'>

@@ -17,6 +17,7 @@ import botRoutes from "./routes/bot.js";
 
 app.use("/api/v1/posts", postRoutes);
 app.use("/api/v1/dalle", dalleRoutes);
+app.use("/api/v1/genImage", dalleRoutes);
 app.use("/api/v1/bot", botRoutes);
 
 // console.log(process.env.OPENAI_API_KEY);
