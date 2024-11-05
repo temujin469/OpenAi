@@ -13,8 +13,7 @@ const router = express.Router();
 // const openai = new OpenAIApi(configuration);
 
 const openai = new OpenAI({
-  apiKey:
-    "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", // Replace with your actual OpenAI API key
+  apiKey: process.env.OPENAI_API_KEY,
 });
 
 router.route("/").post(
